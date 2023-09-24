@@ -18,6 +18,8 @@ namespace Cadastro.Models
         public byte[]? Senha_salt { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        [NotMapped]
+        public string Token { get; set; }
     }
 }
 

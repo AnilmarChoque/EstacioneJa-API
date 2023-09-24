@@ -226,3 +226,4 @@ C:\Users\anilm\Downloads\Etec\PAM\EstacioneJaApi\obj\Debug\net7.0\refint\Cadastr
 C:\Users\anilm\Downloads\Etec\PAM\EstacioneJaApi\obj\Debug\net7.0\Cadastro.pdb
 C:\Users\anilm\Downloads\Etec\PAM\EstacioneJaApi\obj\Debug\net7.0\Cadastro.genruntimeconfig.cache
 C:\Users\anilm\Downloads\Etec\PAM\EstacioneJaApi\obj\Debug\net7.0\ref\Cadastro.dll
+C:\Users\anilm\Downloads\Etec\PAM\EstacioneJaApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

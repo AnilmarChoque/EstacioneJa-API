@@ -8,18 +8,27 @@ using Cadastro.Models;
 using Cadastro.Models.Enuns;
 using Microsoft.EntityFrameworkCore;
 using Cadastro.Utils;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cadastro.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[Controller]")]
     public class UsuariosController : ControllerBase
     {
         private readonly DataContext _context;
+        private IConfiguration _configuration;
 
-        public UsuariosController(DataContext context)
+        public UsuariosController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         private async Task<bool> UsuarioExistente(string email)
@@ -110,6 +119,8 @@ namespace Cadastro.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
         [HttpPost("Registrar")]
         public async Task<ActionResult> RegistrarUsuario(Usuario user)
         {
@@ -133,6 +144,7 @@ namespace Cadastro.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("Autenticar")]
         public async Task<IActionResult> AutenticarUsuario(Usuario credenciais)
         {
@@ -153,6 +165,7 @@ namespace Cadastro.Controllers
                 {
                     usuario.Senha_hash = null;
                     usuario.Senha_salt = null;
+                    usuario.Token = CriarToken(usuario);
                     return Ok(usuario);
                 }
             }
@@ -161,6 +174,20 @@ namespace Cadastro.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        private string CriarToken(Usuario usuario)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),  new Claim(ClaimTypes.Name, usuario.Email)
+            };
+                SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8 .GetBytes(_configuration.GetSection("ConfiguracaoToken:Chave").Value)); SigningCredentials creds= new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);  SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();  SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);  return tokenHandler.WriteToken(token);
+        } 
         
     }
 }
