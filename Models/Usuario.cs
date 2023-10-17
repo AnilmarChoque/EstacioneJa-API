@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Cadastro.Models.Enuns;
+using EstacioneJa.Models;
 
 namespace Cadastro.Models
 {
@@ -20,6 +21,7 @@ namespace Cadastro.Models
         public string Longitude { get; set; }
         [NotMapped]
         public string Token { get; set; }
+        public List<Estacionamento> Estacionamentos { get; set; }
     }
 }
 
