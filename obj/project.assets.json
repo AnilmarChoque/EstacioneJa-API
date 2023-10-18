@@ -3847,11 +3847,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "a:\\3AI\\TCC\\EstacioneJa\\Cadastro.csproj",
+      "projectUniqueName": "D:\\3AI\\Programinds\\Estacione já\\Cadastro.csproj",
       "projectName": "Cadastro",
-      "projectPath": "a:\\3AI\\TCC\\EstacioneJa\\Cadastro.csproj",
+      "projectPath": "D:\\3AI\\Programinds\\Estacione já\\Cadastro.csproj",
       "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
-      "outputPath": "a:\\3AI\\TCC\\EstacioneJa\\obj\\",
+      "outputPath": "D:\\3AI\\Programinds\\Estacione já\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3867,7 +3867,6 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.305\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3936,7 +3935,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

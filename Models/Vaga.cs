@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cadastro.Models.Enuns;
+using Estacione_já.Models;
+using EstacioneJa.Models.Enuns;
 
 namespace EstacioneJa.Models
 {
@@ -11,6 +14,13 @@ namespace EstacioneJa.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string Secao { get; set; }
+        public DisponibilidadeEnum Disponibilidade { get; set; }
+        public int Andar { get; set; }
+        public double Numero { get; set; }
+        public PreferenciaEnum Preferencia { get; set; }
+        public Sensor Sensor { get; set; }
+        public Estacionamento Estacionamento { get; set; }
+
 
         /*create table vaga (id_vaga numeric(6) constraint vaga_id_pk primary key,
         latitude varchar(40) constraint vaga_latitude_nn not null,

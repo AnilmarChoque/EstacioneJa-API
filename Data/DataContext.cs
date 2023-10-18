@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Cadastro.Models;
 using Cadastro.Models.Enuns;
 using Cadastro.Utils;
+using EstacioneJa.Models;
+using Estacione_já.Models;
 
 namespace Cadastro.Data
 {
@@ -16,6 +18,10 @@ namespace Cadastro.Data
             
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Estacionamento> Estacionamentos { get; set; }
+        public DbSet<Sensor> Sensores { get; set; }
+        public DbSet<Vaga> Vagas { get; set; }
+        public DbSet<UsuarioVaga> UsuarioVagas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,20 +40,11 @@ namespace Cadastro.Data
 
             modelBuilder.Entity<Usuario>().HasData(user);
 
-            Usuario user1 = new Usuario();      
-            Criptografia.CriarSenhaHash("987654321", out byte[] passwordhash, out byte[]passwordsalt);      
-            user1.Id = 2;
-            user1.Nome = "natanael";
-            user1.Senha = string.Empty; 
-            user1.Senha_hash = passwordhash;
-            user1.Senha_salt = passwordsalt;          
-            user1.Cpf = 12345678911;
-            user1.Email = "natanael@outlook.com";  
-            user1.Foto = null;
-            user1.Preferencia = 0;
-            user1.TipoUsuario = TipoUsuarioEnum.Cliente;
-
-            modelBuilder.Entity<Usuario>().HasData(user1);
+            Estacionamento estacionamento = new Estacionamento();           
+            estacionamento.Id = 1;
+            estacionamento.Nome = "Auto Park";
+            estacionamento.UsuarioId = 1;
+            modelBuilder.Entity<Usuario>().HasData(estacionamento);
         }
     }
 }

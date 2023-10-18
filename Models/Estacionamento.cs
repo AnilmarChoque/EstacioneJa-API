@@ -12,6 +12,8 @@ namespace EstacioneJa.Models
         public string Nome { get; set; }
         public string Url { get; set; }
         public Usuario Usuario { get; set; }
+        public int UsuarioId { get; set; }
+        public List<Vaga> Vagas { get; set; }
         /*create table estacionamento (id_estacionamento numeric(6) constraint estacionamento_id_pk primary key,
         nome_estacionamento varchar(40) constraint estacionamento_nome_nn not null,
         url_rede_sensores varchar(40) constraint estacionamento_url_nn not null,
