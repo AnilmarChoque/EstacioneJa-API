@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Cadastro.Models.Enuns;
-using EstacioneJa.Models;
 
 namespace Cadastro.Models
 {
@@ -12,16 +11,17 @@ namespace Cadastro.Models
         public byte[]? Foto { get; set; }
         [NotMapped]
         public string Senha { get; set; }
-        public long Cpf { get; set; }
+        public string Cpf { get; set; }
         public PreferenciaEnum Preferencia { get; set; }
         public TipoUsuarioEnum TipoUsuario { get; set; }
         public byte[]? Senha_hash { get; set; }
         public byte[]? Senha_salt { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
+        public string? Latitude { get; set; }
+        public string? Longitude { get; set; }
         [NotMapped]
         public string Token { get; set; }
         public List<Estacionamento> Estacionamentos { get; set; }
+
     }
 }
 

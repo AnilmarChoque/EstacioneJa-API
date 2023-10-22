@@ -1,7 +1,5 @@
-using Cadastro.Models;
-using EstacioneJa.Models;
 
-namespace Estacione_já.Models
+namespace Cadastro.Models
 {
     public class UsuarioVaga
     {

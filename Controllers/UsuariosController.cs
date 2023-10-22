@@ -46,6 +46,7 @@ namespace Cadastro.Controllers
             try
             {
                 Usuario p = await _context.Usuarios
+                    .Include(e => e.Estacionamentos).ThenInclude(ev => ev.Vagas).ThenInclude(vs => vs.Sensor)
                     .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
 
                 return Ok(p);
@@ -61,7 +62,9 @@ namespace Cadastro.Controllers
         {
             try
             {
-                List<Usuario> lista = await _context.Usuarios.ToListAsync();
+                List<Usuario> lista = await _context.Usuarios.
+                    Include(e => e.Estacionamentos).ThenInclude(ev => ev.Vagas).ThenInclude(vs => vs.Sensor)
+                    .ToListAsync();
                 return Ok(lista);
             }
             catch (Exception ex)
@@ -179,15 +182,21 @@ namespace Cadastro.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),  new Claim(ClaimTypes.Name, usuario.Email)
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+                new Claim(ClaimTypes.Name, usuario.Email),
+                new Claim(ClaimTypes.Role, ((int)usuario.TipoUsuario).ToString())
             };
-                SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8 .GetBytes(_configuration.GetSection("ConfiguracaoToken:Chave").Value)); SigningCredentials creds= new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);  SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor {
+                SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8 .GetBytes(_configuration.GetSection("ConfiguracaoToken:Chave").Value)); 
+                SigningCredentials creds= new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);  
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
-            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();  SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);  return tokenHandler.WriteToken(token);
-        } 
-        
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();  
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);  
+            
+            return tokenHandler.WriteToken(token);
+        }     
     }
 }

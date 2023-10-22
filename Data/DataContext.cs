@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Cadastro.Models;
 using Cadastro.Models.Enuns;
 using Cadastro.Utils;
-using EstacioneJa.Models;
-using Estacione_já.Models;
-
 namespace Cadastro.Data
 {
     public class DataContext : DbContext
@@ -21,7 +18,7 @@ namespace Cadastro.Data
         public DbSet<Estacionamento> Estacionamentos { get; set; }
         public DbSet<Sensor> Sensores { get; set; }
         public DbSet<Vaga> Vagas { get; set; }
-        public DbSet<UsuarioVaga> UsuarioVagas { get; set; }
+        //public DbSet<UsuarioVaga> UsuarioVagas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +29,7 @@ namespace Cadastro.Data
             user.Senha = string.Empty; 
             user.Senha_hash = hash;
             user.Senha_salt = salt;          
-            user.Cpf = 12345678910;
+            user.Cpf = "12345678910";
             user.Email = "anilmar@gmail.com";
             user.Foto = null;
             user.Preferencia = PreferenciaEnum.Nao;
@@ -40,11 +37,31 @@ namespace Cadastro.Data
 
             modelBuilder.Entity<Usuario>().HasData(user);
 
-            Estacionamento estacionamento = new Estacionamento();           
-            estacionamento.Id = 1;
-            estacionamento.Nome = "Auto Park";
-            estacionamento.UsuarioId = 1;
-            modelBuilder.Entity<Usuario>().HasData(estacionamento);
+            modelBuilder.Entity<Estacionamento>().HasData(
+            new Estacionamento { Id = 1, Nome = "Auto Park", UsuarioId = 1}
+            );
+
+            modelBuilder.Entity<Vaga>()
+                .HasKey(v => v.Id);
+
+            modelBuilder.Entity<Sensor>()
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<Sensor>()
+                .HasOne(s => s.Vaga)
+                .WithOne(v => v.Sensor)
+                .HasForeignKey<Sensor>(v => v.VagaId);
+                
+
+            modelBuilder.Entity<Vaga>().HasData
+            (
+                new Vaga { Id= 1, Latitude = "68.4908", Longitude = "-61.2506", Secao = "A1", Disponibilidade = DisponibilidadeEnum.livre, Andar = 1, Numero = 1, Preferencia = PreferenciaEnum.Nao, EstacionamentoId = 1}
+            );
+
+            modelBuilder.Entity<Sensor>().HasData
+            (
+                new Sensor { Id = 1, Latitude = "68.4908", Longitude = "-61.2506", VagaId =1}
+            );
         }
     }
 }

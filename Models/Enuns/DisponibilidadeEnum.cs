@@ -1,8 +1,8 @@
-namespace EstacioneJa.Models.Enuns
+namespace Cadastro.Models.Enuns
 {
     public enum DisponibilidadeEnum
     {
-        livre = 0,
-        ocupado = 1
+        livre = 1,
+        ocupado = 2
     }
 }

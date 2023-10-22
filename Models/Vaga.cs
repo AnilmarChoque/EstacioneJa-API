@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Cadastro.Models.Enuns;
-using Estacione_já.Models;
-using EstacioneJa.Models.Enuns;
 
-namespace EstacioneJa.Models
+namespace Cadastro.Models
 {
     public class Vaga
     {
-        public int Id { get; set;}
+        public long Id { get; set;}
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string Secao { get; set; }
@@ -18,8 +17,11 @@ namespace EstacioneJa.Models
         public int Andar { get; set; }
         public double Numero { get; set; }
         public PreferenciaEnum Preferencia { get; set; }
+        [JsonIgnore]
         public Sensor Sensor { get; set; }
+        [JsonIgnore]
         public Estacionamento Estacionamento { get; set; }
+        public long EstacionamentoId { get; set; }
 
 
         /*create table vaga (id_vaga numeric(6) constraint vaga_id_pk primary key,
@@ -30,7 +32,6 @@ namespace EstacioneJa.Models
         andar_vaga smallint constraint vaga_andar_nn not null,
         numero_vaga numeric(6) constraint vaga_numero_nn not null,
         preferencial_vaga smallint constraint vaga_preferencia_nn not null,
-        id_sensor numeric(6) constraint vaga_sensor_fk references sensor,
         id_estacionamento numeric(6) constraint vaga_estacionamento_fk references estacionamento);*/
     }
 }
