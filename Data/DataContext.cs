@@ -18,7 +18,7 @@ namespace Cadastro.Data
         public DbSet<Estacionamento> Estacionamentos { get; set; }
         public DbSet<Sensor> Sensores { get; set; }
         public DbSet<Vaga> Vagas { get; set; }
-        //public DbSet<UsuarioVaga> UsuarioVagas { get; set; }
+        public DbSet<UsuarioVaga> UsuarioVagas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,14 @@ namespace Cadastro.Data
             modelBuilder.Entity<Sensor>().HasData
             (
                 new Sensor { Id = 1, Latitude = "68.4908", Longitude = "-61.2506", VagaId =1}
+            );
+
+            modelBuilder.Entity<UsuarioVaga>()
+                .HasKey(uv => new {uv.CodData, uv.CodUsuario, uv.CodVaga});
+
+            modelBuilder.Entity<UsuarioVaga>().HasData
+            (                  
+                new UsuarioVaga() {CodData = 1, Forma_pagamento = PagamentoEnum.Pix, Data = DateTime.Now, Receptor_pagamento = "Auto Park", Emissor_pagamento = "Anilmar", Ocupacao_inicial = DateTime.Now, Ocupacao_final = DateTime.Now, CodVaga = 1, CodUsuario = 1}                       
             );
         }
     }

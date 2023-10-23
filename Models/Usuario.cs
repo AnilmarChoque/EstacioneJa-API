@@ -21,6 +21,7 @@ namespace Cadastro.Models
         [NotMapped]
         public string Token { get; set; }
         public List<Estacionamento> Estacionamentos { get; set; }
+        public List<UsuarioVaga> UsuarioVagas  { get; set; }
 
     }
 }

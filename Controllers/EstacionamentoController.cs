@@ -31,12 +31,6 @@ namespace Cadastro.Controllers
         {
             return int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
-
-        private string ObterPerfilUsuario()
-        {
-            return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
-        }
-
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetSingle(int id)
         {
