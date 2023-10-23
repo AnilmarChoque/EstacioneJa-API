@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cadastro.Controllers
 {
-    [Authorize(Roles = "2")]
+    [Authorize(Roles = "1, 2")]
     [ApiController]
     [Route("[Controller]")]
     public class EstacionamentoController : ControllerBase

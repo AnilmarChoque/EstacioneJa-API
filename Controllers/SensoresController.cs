@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EstacioneJaApi.Controllers
 {
-    [Authorize(Roles = "2")]
+    [Authorize(Roles = "1, 2")]
     [ApiController]
     [Route("[Controller]")]
     public class SensoresController : ControllerBase
