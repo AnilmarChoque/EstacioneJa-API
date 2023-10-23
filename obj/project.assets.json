@@ -4070,23 +4070,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\etechas\\.nuget\\packages\\": {},
+    "C:\\Users\\anilm\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\3AI\\Estacione-Ja\\Cadastro\\Cadastro.csproj",
+      "projectUniqueName": "C:\\Users\\anilm\\Downloads\\Etec\\TCC\\Cadastro\\Cadastro.csproj",
       "projectName": "Cadastro",
-      "projectPath": "D:\\3AI\\Estacione-Ja\\Cadastro\\Cadastro.csproj",
-      "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
-      "outputPath": "D:\\3AI\\Estacione-Ja\\Cadastro\\obj\\",
+      "projectPath": "C:\\Users\\anilm\\Downloads\\Etec\\TCC\\Cadastro\\Cadastro.csproj",
+      "packagesPath": "C:\\Users\\anilm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anilm\\Downloads\\Etec\\TCC\\Cadastro\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\etechas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anilm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4172,7 +4172,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
