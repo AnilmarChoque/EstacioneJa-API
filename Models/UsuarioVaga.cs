@@ -14,9 +14,9 @@ namespace Cadastro.Models
         public DateTime Ocupacao_inicial { get; set; }
         public DateTime Ocupacao_final { get; set; }
         public Vaga Vaga { get; set; }
-        public long CodVaga { get; set; }
+        public long VagaId { get; set; }
         public Usuario Usuario { get; set; }
-        public long CodUsuario { get; set; }
+        public long UsuarioId { get; set; }
 
     }
 }

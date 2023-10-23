@@ -64,12 +64,21 @@ namespace Cadastro.Data
             );
 
             modelBuilder.Entity<UsuarioVaga>()
-                .HasKey(uv => new {uv.CodData, uv.CodUsuario, uv.CodVaga});
+                .HasKey(uv => new {uv.CodData});
 
             modelBuilder.Entity<UsuarioVaga>().HasData
             (                  
-                new UsuarioVaga() {CodData = 1, Forma_pagamento = PagamentoEnum.Pix, Data = DateTime.Now, Receptor_pagamento = "Auto Park", Emissor_pagamento = "Anilmar", Ocupacao_inicial = DateTime.Now, Ocupacao_final = DateTime.Now, CodVaga = 1, CodUsuario = 1}                       
+                new UsuarioVaga() {CodData = 1, Forma_pagamento = PagamentoEnum.Pix, Data = DateTime.Now, Receptor_pagamento = "Auto Park", Emissor_pagamento = "Anilmar", Ocupacao_inicial = DateTime.Now, Ocupacao_final = DateTime.Now, VagaId = 1, UsuarioId = 1}                       
             );
+
+            modelBuilder.Entity<UsuarioVaga>()
+                .HasOne(uv => uv.Vaga)
+                .WithMany(v => v.UsuarioVagas)
+                .HasForeignKey(uv => uv.VagaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
     }
 }

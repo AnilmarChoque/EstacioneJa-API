@@ -33,13 +33,13 @@ namespace EstacioneJaApi.Controllers
             {
                 Usuario usuario = await _context.Usuarios
                 .Include(u => u.UsuarioVagas).ThenInclude(uv => uv.Vaga)
-                .FirstOrDefaultAsync(u => u.Id == novoUsuarioVaga.CodUsuario);
+                .FirstOrDefaultAsync(u => u.Id == novoUsuarioVaga.UsuarioId);
 
                 if (usuario == null)
                     throw new System.Exception("Usuaro não encontrado para o Id Informado.");
 
                 Vaga vaga = await _context.Vagas
-                .FirstOrDefaultAsync(v => v.Id == novoUsuarioVaga.CodVaga);
+                .FirstOrDefaultAsync(v => v.Id == novoUsuarioVaga.VagaId);
 
                 if (vaga == null)
                     throw new System.Exception("Vaga não encontrada.");
@@ -81,9 +81,9 @@ namespace EstacioneJaApi.Controllers
         {
             try
             {
-                List<Vaga> habilidades = new List<Vaga>();
-                habilidades = await _context.Vagas.ToListAsync();
-                return Ok(habilidades);
+                List<Vaga> vagas = new List<Vaga>();
+                vagas = await _context.Vagas.ToListAsync();
+                return Ok(vagas);
             }
             catch (System.Exception ex)
             {
@@ -97,8 +97,8 @@ namespace EstacioneJaApi.Controllers
             try
             {
                 UsuarioVaga uvRemover = await _context.UsuarioVagas
-                    .FirstOrDefaultAsync(uvBusca => uvBusca.CodUsuario == uv.CodUsuario
-                     && uvBusca.CodVaga == uv.CodVaga);
+                    .FirstOrDefaultAsync(uvBusca => uvBusca.UsuarioId == uv.UsuarioId
+                     && uvBusca.VagaId == uv.VagaId);
                 if(uvRemover == null)
                     throw new System.Exception("Usuario ou Vaga não encontrados");
 
